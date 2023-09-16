@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:listacontatosapp/controller/cadastrar_contatos_controller.dart';
 import 'package:listacontatosapp/views/homepage.dart';
 import 'package:provider/provider.dart';
 
 void main() {
-  runApp(MultiProvider(providers: [], child: const ListaContatos()));
+  runApp(MultiProvider(providers: [
+    ChangeNotifierProvider(
+      create: (context) => CadastrarContatosController(),
+    ),
+  ], child: const ListaContatos()));
 }
 
 class ListaContatos extends StatelessWidget {
@@ -13,12 +18,14 @@ class ListaContatos extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Lista de Contatos',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSwatch(
-          backgroundColor: Colors.blueGrey,
-          primarySwatch: Colors.red,
-        ).copyWith(secondary: Colors.redAccent),
-      ),
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData.dark().copyWith(
+          colorScheme: ColorScheme.fromSwatch(
+              primarySwatch: Colors.deepOrange,
+              accentColor: Colors.deepOrange,
+              backgroundColor: Colors.black,
+              errorColor: Colors.red,
+              brightness: Brightness.dark)),
       home: const HomePage(),
     );
   }

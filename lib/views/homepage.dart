@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:listacontatosapp/main.dart';
+import 'package:listacontatosapp/views/cadastrar_contatos_view.dart';
+import 'package:listacontatosapp/views/lista_contatos_view.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -29,15 +32,18 @@ class _HomePageState extends State<HomePage> {
       body: PageView(
         controller: pc,
         onPageChanged: setPaginaAtual,
-        children: const [],
+        children: const [
+          ListaContatosView(),
+          CadastrarContatosView(),
+        ],
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: paginaAtual,
         items: const [
           BottomNavigationBarItem(
-              icon: Icon(Icons.calculate), label: 'Lista de contatos'),
+              icon: Icon(Icons.list), label: 'Lista de contatos'),
           BottomNavigationBarItem(
-              icon: Icon(Icons.list), label: 'Cadastrar contato'),
+              icon: Icon(Icons.person), label: 'Cadastrar contato'),
         ],
         onTap: (index) {
           pc.animateToPage(index,
