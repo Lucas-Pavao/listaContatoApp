@@ -14,6 +14,12 @@ class _ListaContatosViewState extends State<ListaContatosView> {
   int _selectedIndex = -1;
 
   @override
+  void initState() {
+    super.initState();
+    context.read<ListaContatosController>().getContatos();
+  }
+
+  @override
   Widget build(BuildContext context) {
     ListaContatosController listaContatosController =
         Provider.of<ListaContatosController>(context);

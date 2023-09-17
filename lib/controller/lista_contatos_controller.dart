@@ -18,11 +18,9 @@ class ListaContatosController extends ChangeNotifier {
     notifyListeners();
   }
 
-  void getContatos(Contato contato) async {
-    _contatoRepository.findAll().then((value) {
-      _contatos.addAll(value);
-      notifyListeners();
-    });
+  void getContatos() async {
+    _contatos.clear();
+    _contatos.addAll(await _contatoRepository.findAll());
 
     notifyListeners();
   }

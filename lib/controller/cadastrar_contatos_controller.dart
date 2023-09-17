@@ -29,6 +29,8 @@ class CadastrarContatosController extends ChangeNotifier {
       );
 
       await repository.save(contato);
+      nomeController.clear();
+      contatoController.clear();
     } catch (e) {
       debugPrint(e.toString());
     }
