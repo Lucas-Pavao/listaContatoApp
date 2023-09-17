@@ -1,18 +1,36 @@
+import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:listacontatosapp/model/contato.dart';
+import 'package:listacontatosapp/model/imagem.dart';
+import 'package:listacontatosapp/repository/contato_repository.dart';
+import 'package:listacontatosapp/service/contato_service.dart';
 
 class CadastrarContatosController extends ChangeNotifier {
   // Lista de opções para os campos de seleção
-  final List<String> dias =
-      List.generate(31, (index) => (index + 1).toString());
-  final List<String> meses =
-      List.generate(12, (index) => (index + 1).toString());
-  final List<String> anos =
-      List.generate(100, (index) => (2023 - index).toString());
 
-  // Valores selecionados para os campos de seleção
-  String? selectedDia;
-  String? selectedMes;
-  String? selectedAno;
   File? selectedImage;
+  TextEditingController nomeController = TextEditingController();
+  TextEditingController contatoController = TextEditingController();
+
+  final ContatoRepository repository = ContatoService();
+
+  Future<void> saveContato() async {
+    try {
+      String imageBase64 = base64Encode(selectedImage!.readAsBytesSync());
+
+      var contato = Contato(
+        nome: nomeController.text,
+        contato: contatoController.text,
+        imagem: Imagem(
+            sType: "File",
+            name: selectedImage!.path.split('/').last,
+            url: imageBase64),
+      );
+
+      await repository.save(contato);
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
 }

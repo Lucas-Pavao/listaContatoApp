@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:listacontatosapp/controller/cadastrar_contatos_controller.dart';
+import 'package:listacontatosapp/controller/lista_contatos_controller.dart';
 import 'package:listacontatosapp/views/homepage.dart';
 import 'package:provider/provider.dart';
 
@@ -7,6 +8,9 @@ void main() {
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider(
       create: (context) => CadastrarContatosController(),
+    ),
+    ChangeNotifierProvider(
+      create: (context) => ListaContatosController(),
     ),
   ], child: const ListaContatos()));
 }

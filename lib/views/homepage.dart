@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:listacontatosapp/main.dart';
 import 'package:listacontatosapp/views/cadastrar_contatos_view.dart';
 import 'package:listacontatosapp/views/lista_contatos_view.dart';
 

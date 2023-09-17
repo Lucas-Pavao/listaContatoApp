@@ -32,7 +32,7 @@ class ContatoService extends ContatoRepository {
       }
     } catch (e) {
       // Lida com exceções gerais, como erro de conexão
-      throw Exception('Erro ao obter CEPs: $e');
+      throw Exception('Erro ao obter contatos: $e');
     }
   }
 
@@ -55,7 +55,7 @@ class ContatoService extends ContatoRepository {
       }
     } catch (e) {
       // Lida com exceções gerais, como erro de conexão
-      throw Exception('Erro ao obter CEPs: $e');
+      throw Exception('Erro ao salvar contatos: $e');
     }
   }
 
@@ -78,15 +78,15 @@ class ContatoService extends ContatoRepository {
       }
     } catch (e) {
       // Lida com exceções gerais, como erro de conexão
-      throw Exception('Erro ao obter CEPs: $e');
+      throw Exception('Erro ao atualizar contato: $e');
     }
   }
 
   @override
-  Future<void> delete(int id) async {
+  Future<void> delete(Contato contato) async {
     try {
       var response = await http.delete(
-        Uri.parse('$_baseUrl/$id'),
+        Uri.parse('$_baseUrl/${contato.objectId}'),
         headers: headers,
       );
 
@@ -96,7 +96,7 @@ class ContatoService extends ContatoRepository {
       }
     } catch (e) {
       // Lida com exceções gerais, como erro de conexão
-      throw Exception('Erro ao obter CEPs: $e');
+      throw Exception('Erro ao deletar contato: $e');
     }
   }
 }
